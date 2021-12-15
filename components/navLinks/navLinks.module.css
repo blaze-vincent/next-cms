@@ -1,0 +1,68 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: max-content;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.inDynamicHeader {
+    flex-direction: row-reverse;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: max-content;
+    height: max-content;
+}
+.link {
+    position: relative;
+    color: var(--purple-secondary);
+    text-decoration: none;
+    font-size: 1.25rem;
+    width: max-content;
+    height: max-content;
+    }
+.link:after {
+    content: "";
+    display: block;
+    width: 0%;
+    position: absolute;
+    background-color: var(--purple-secondary);
+    height: 2px;
+    bottom: -1px;
+    transition: 0.5s;
+}
+.selected {
+    font-weight: 500;
+    color: var(--purple-primary);
+}
+.selected:after {
+    width: 100%;
+    background-color: var(--purple-primary);
+}
+@media (hover: hover){
+    .notSelected:hover:after {
+        width: 100%;
+    }
+}
+.container.inHamburgerMenu {
+    flex-direction: column-reverse;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+.nav.inHamburgerMenu {
+    flex-direction: column;
+    align-items: center;
+}
+.nav.inHamburgerMenu a {
+    font-size: 6.5vh;
+    margin: 2vh 0;
+}
+.inHamburgerMenu .selected:after, .inHamburgerMenu .notSelected:after{
+    bottom: -2vh;
+    height: 0.3vh;
+}

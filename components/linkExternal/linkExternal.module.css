@@ -1,0 +1,36 @@
+.container {
+    text-decoration: none;
+    font-style: normal;
+    color: var(--white);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+}
+.text {
+    width: inherit;
+    z-index: 2;
+}
+.externalIndicator{
+    position: relative;
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 0;
+    height: 0;
+    margin-left: 0.25rem;
+    background-size: 100% 100%;
+    bottom: -0.1rem;
+}
+.email{
+    background-image: url('/email.svg');
+}
+.location{
+    background-image: url('/location.svg');
+}
+.phone {
+    background-image: url('/phone.svg');
+}

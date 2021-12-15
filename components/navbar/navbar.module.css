@@ -1,0 +1,47 @@
+.containerStatic {
+    background-color: var(--lilac);
+    border-bottom: 2px solid var(--purple-primary);
+    z-index: 99999;
+}
+.containerDynamic {
+    display: block;
+    padding: 1rem min(5rem, 2.5%);
+    background-color: var(--lilac);
+}
+.spacer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.dynamicMode {
+    position: fixed;
+    height: 6rem;
+    top: -6rem;
+    transition: top 0.25s;
+    border-bottom: 2px solid var(--purple-primary);
+    padding: 0.5rem 1rem;
+}
+.dynamicMode .spacer {
+    align-items: center;
+}
+.dynamicMode.enteringDynamic {
+    transition: 0.25s;
+    top: 0rem;
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+@media (max-width: 340px){
+    .spacer {
+        gap: 0;
+    }
+}

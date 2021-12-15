@@ -1,0 +1,79 @@
+.container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 65rem;
+}
+.h2 {
+  font-size: 2rem;
+  width: 100%;
+  max-width: max-content;
+  line-height: 2.25rem;
+  font-weight: 500;
+  color: var(--purple-primary);
+}
+.content {
+  max-width: 75rem;
+}
+.sections {
+  display: flex;
+  flex-direction: row;
+  height: max-content;
+  background-color: var(--lilac);
+  color: var(--purple-secondary);
+  font-size: 1.25rem;
+}
+.serviceTab {
+  font-weight: 500;
+  text-align: center;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  background-color: var(--lilac);
+  transition: 0.25s;
+}
+.selected {
+  color: var(--white);
+  background-color: var(--purple-primary);
+}
+.info {
+  background-color: var(--lilac);
+  border: 2px solid var(--purple-primary);
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+.imageSection {
+  display: block;
+  position: relative;
+  height: 30rem;
+}
+@media (hover: hover) {
+  .serviceTab:hover {
+    background-color: var(--purple-pale);
+    color: var(--purple-primary);
+  }
+  .selected:hover {
+    background-color: var(--purple-primary);
+    color: var(--purple-pale);
+  }
+}
+.background {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background-image: url(/house.jpg);
+  background-size: cover;
+  z-index: 1;
+  filter: grayscale(25%); 
+}
+.infoInnerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

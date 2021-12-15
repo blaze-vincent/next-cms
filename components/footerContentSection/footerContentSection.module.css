@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.container p {
+    width: max-content;
+}
+.alignCenter {
+    align-items: center;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 1.3rem;
+    width: max-content;
+}
+
+.spaceFiller {
+    width: 6rem;
+    height: 6rem;
+    background-image: url('/bucket.svg');
+    background-size: 100% 100%;
+    align-self: flex-end;
+}

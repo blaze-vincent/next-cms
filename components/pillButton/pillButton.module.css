@@ -1,0 +1,30 @@
+.container {
+    border: 3px solid var(--purple-primary);
+    border-radius: 10000px;
+    background-color: var(--white);
+    padding: 1.25rem;
+    color: var(--purple-secondary);
+    width: max-content;
+    font: inherit;
+    font-size: 1.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    height: max-content;
+    transition: 0.5s;
+}
+.small {
+    padding: 0.5rem;
+    font-size: 1.4rem;
+}
+.hamburger {
+    width: min-content;
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+}
+@media (hover: hover){
+    .container:hover{
+        background-color: var(--purple-secondary);
+        color: var(--white);
+    }
+}
+  

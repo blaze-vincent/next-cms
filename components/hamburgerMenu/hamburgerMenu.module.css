@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    align-self: center;
+    overflow: hidden;
+}
+.hamburgerBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--purple-secondary);
+    border: 3px solid var(--purple-primary);
+    gap: 0.2rem;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.hamburgerBtn div {
+    display: block;
+    background-color: var(--white);
+    width: 70%;
+    height: 3px;
+}
+.menu {
+    display: none;
+    background-color: var(--lilac);
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+.active {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.25s;
+}
+.visible {
+    z-index: 99998;
+    transition: .25s;
+    opacity: 1;
+}
+.btnSelected {
+    background-color: var(--white);
+}
+.btnSelected div {
+    background-color: var(--purple-primary);
+}

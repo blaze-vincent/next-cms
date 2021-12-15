@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 45rem;
+  width: 100%;
+  gap: 0.5rem;
+}
+.p {
+  width: 100%;
+}
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1rem;
+}
+.h2 {
+  width: 100%;
+  font-size: 1.5rem;
+  color: var(--purple-primary);
+  font-family: Montserrat;
+  font-weight: 600;
+  border: none;
+}
+.editMode {
+  background-color: var(--lilac);
+  padding: 0.5rem;
+}
+.editBtn {
+  background-color: var(--lilac);
+  border: none; border-radius: 1000px;
+  font-size: 1rem;
+  color: var(--purple-primary);
+  width: max-content;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.cancelBtn {
+  background-color: var(--pink);
+}
+.textarea {
+  font-size: 1rem;
+  color: var(--purple-primary);
+  overflow-y: hidden;
+  resize: none;
+}
+.b {
+  background-color: var(--lilac);
+  padding-left: 0.5rem; padding-right: 0.5rem;
+}
+.secondaryStatusSelection {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+.displayPrompt {
+  max-width: max-content;
+}
+.secondaryStatusBtn {
+  cursor: pointer;
+  max-width: max-content;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1000px;
+  background-color: var(--lilac);
+  color: var(--purple-primary);
+  height: max-content;
+}
+.secondaryStatusBtnNo {
+  background-color: var(--pink);
+}
+.selected {
+  border: 2px solid var(--purple-primary);
+}
+.edited:after {
+  content: ' (edited)';
+  font-weight: 400;
+  font-size: 1rem;
+}
+.impedingError{
+  font-weight: 500;
+  color: var(--pink);
+}
+.span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.deleteBtn {
+  border: 2px solid var(--pink);
+  border-radius: 1000px;
+  padding: 0.25rem;
+  max-width: max-content;
+  color: var(--pink);
+  font-weight: 600;
+  background-color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+}
