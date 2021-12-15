@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import GalleryImage from '../galleryImage/galleryImage';
 import styles from './imagesEditor.module.css'
-import Link from 'next/link'
+import PillButton from '../pillButton/pillButton'
 
 export default function ImagesEditor({token, inHome}){
   const [dbImages, setDbImages] = useState([]);
@@ -58,7 +58,7 @@ export default function ImagesEditor({token, inHome}){
       return <GalleryImage token={token} dbImage={dbImage} key={index} services={services} refresh={fetchNoCache}/>
     })}
     {inHome ?
-    <button className={styles.loadButton}><Link href='/gallery'><a>See all pictures</a></Link></button>
+    <PillButton size="small" destination="/gallery">View full gallery</PillButton>
     : <button className={styles.loadButton} onClick={updateParams}>Load more pictures</button>
     }
   </div></>)

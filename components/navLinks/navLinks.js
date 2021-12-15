@@ -37,7 +37,7 @@ export default function NavLinks({noConsult, inDynamicHeader, hamburgerMenuObj =
     }
     useEffect(_ => {
         updateRoute(router.pathname)
-    }, [])
+    }, [router.asPath])
 
     return (<div className={`${styles.container} ${inDynamicHeader && styles.inDynamicHeader} ${hamburgerMenuObj.inHamburgerMenu && styles.inHamburgerMenu}`}>
         {!noConsult && 

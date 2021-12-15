@@ -221,5 +221,5 @@ export default function GalleryImage({dbImage, token, services, refresh}){
 //service image representation selector
 //sort gallery images by newest first
 //consultation form/db object/email
-//navbar should highlight tab based on url only
+
 //add/remove images

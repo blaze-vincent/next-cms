@@ -2,9 +2,7 @@ import dbConnect from '../../db/connect'
 import multer from 'multer'
 import nextConnect from 'next-connect'
 import Account from '../../db/models/Account'
-import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import requireAuthorization from '../../middleware/requireAuthorization'
 
 const upload = multer();
 export const config = {
@@ -26,9 +24,10 @@ const handler = nextConnect({
   await dbConnect();
   next();
 })
-.post(upload.none(), requireAuthorization, async (req, res) => {
+.post(upload.none(), async (req, res) => {
   try {
     if(process.env.ACCEPTING_NEW_ACCOUNTS){
+
       const {username, password} = req.body;
 
       if(!username || !password){
@@ -40,7 +39,7 @@ const handler = nextConnect({
         res.status(403).json({error: 'account already exists'})
         return;
       }
-  
+      
       const passwordHash = await bcrypt.hash(password, 12);
       const account = await Account.create({
         username, 
