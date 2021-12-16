@@ -24,8 +24,36 @@
   max-height: 2.5rem;
   transition: 0.25s;
 }
+.service {
+  width: inherit;
+  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.imageAdderContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 25rem;
+  padding: 1rem;
+}
+.errorMsg {
+  color: var(--pink);
+  font-weight: 500;
+}
+
+.imageAdderContainer label, .imageAdderContainer input {
+  max-width: max-content;
+}
+.textarea {
+  resize: none;
+}
+
 @media (hover: hover){
-  .loadButton:hover {
+  .container button:hover {
     background-color: var(--purple-primary);
     color: var(--white);
   }

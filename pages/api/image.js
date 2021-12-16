@@ -76,12 +76,11 @@ const handler = nextConnect({
     const dbImage = await Image.create({url, description})
 
     if(services) {
-      const servicesArr = JSON.parse(`${services}`);
+      const servicesArr = services.split(',')
 
       for(let i in servicesArr){
-        const svc = await Service.findOne({name: servicesArr[i]})
         await ImageServiceAssociation.create({
-          _service: svc._id,
+          _service: servicesArr[i],
           _image: dbImage._id
         })
       }

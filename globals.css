@@ -46,4 +46,12 @@ button {
     padding: 0.25rem;
     font-size: 1rem;
     background-color: inherit;
+    transition: 0.25s;
 }
+
+@media (hover: hover){
+    button:hover {
+      background-color: var(--purple-primary);
+      color: var(--white);
+    }
+  }
