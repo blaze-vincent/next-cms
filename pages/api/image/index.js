@@ -1,12 +1,12 @@
-import dbConnect from '../../db/connect'
-import Image from '../../db/models/Image'
-import ImageServiceAssociation from '../../db/models/ImageServiceAssociation'
-import Service from '../../db/models/Service'
+import dbConnect from '../../../db/connect'
+import Image from '../../../db/models/Image'
+import ImageServiceAssociation from '../../../db/models/ImageServiceAssociation'
+import Service from '../../../db/models/Service'
 import multer from 'multer'
 import nextConnect from 'next-connect'
 import path from 'path'
 import fs from 'fs'
-import requireAuthorization from '../../middleware/requireAuthorization'
+import requireAuthorization from '../../../middleware/requireAuthorization'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

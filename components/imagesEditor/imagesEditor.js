@@ -16,7 +16,6 @@ export default function ImagesEditor({token, inHome}){
       if(!wipe){
         setDbImages(dbImages ? dbImages.concat(json.images) : json.images)
       } else {
-        console.log(json.images)
         setDbImages(json.images)
       }
     })
