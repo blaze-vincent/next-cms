@@ -11,6 +11,7 @@ export async function getStaticProps(){
 
 export default function Services(props){
   return (<div className={styles.container}>
+    <br></br>
     <h1 className={styles.h1}>Our Primary Services</h1>
     
     {props.services.filter(item => item.description).map((svc, index) => {
