@@ -11,5 +11,9 @@
   line-height: 2.25rem;
   font-weight: 500;
   max-width: max-content;
-  color: var(--purple-secondary);
+  color: var(--purple-primary);
+}
+
+.h2 {
+  font-size: 1.8rem;
 }

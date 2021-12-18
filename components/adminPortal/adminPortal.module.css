@@ -31,6 +31,7 @@
   height: 100%;
 }
 .editorBtn {
+  max-width: 25rem;
   background-color: var(--lilac);
   border: none;
   font-size: 2rem;
