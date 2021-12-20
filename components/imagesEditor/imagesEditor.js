@@ -128,9 +128,10 @@ export default function ImagesEditor({token, inHome}){
     {dbImages.map((dbImage, index) => {
       return <GalleryImage token={token} dbImage={dbImage} key={index} services={services} refresh={fetchNoCache}/>
     })}
-    {inHome ?
+  </div>
+  {inHome ?
     <PillButton size="small" destination="/gallery">View full gallery</PillButton>
     : <button className={styles.loadButton} onClick={updateParams}>Load more pictures</button>
-    }
-  </div></>)
+  }
+  </>)
 }
