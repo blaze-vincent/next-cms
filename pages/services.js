@@ -10,11 +10,15 @@ export async function getStaticProps(){
 }
 
 export default function Services(props){
+
+  const describedServices = props.services.filter(item => item.description);
+  const undescribedServices = props.services.filter(item => !item.description);
+
   return (<div className={styles.container}>
     <br></br>
     <h1 className={styles.h1}>Our Primary Services</h1>
     
-    {props.services.filter(item => item.description).map((svc, index) => {
+    {describedServices.map((svc, index) => {
       return (<Service 
         key={index}
         name={svc.name}
@@ -23,15 +27,19 @@ export default function Services(props){
       />)
     })}
 
-    <h2 className={styles.h2}>Other Services Offered</h2>
+    {
+      undescribedServices.length > 0
+      && <h2 className={styles.h2}>Other Services Offered</h2>
+    }
     
-    {props.services.filter(item => !item.description).map((svc, index) => {
-      return (<Service 
-        key={index}
-        name={svc.name}
-        minimized={true}
-      />)
-    })}
+    {
+      undescribedServices.map((svc, index) => {
+        return (<Service 
+          key={index}
+          name={svc.name}
+          minimized={true}
+      />)})
+    }
 
     </div>)
 }

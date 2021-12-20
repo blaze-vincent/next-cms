@@ -8,8 +8,8 @@ export default function Service({name, description, id, minimized}){
 
   useEffect(_ => {
     description && fetch(`/api/image/${id}`).then(async isa_body => {
-      const json = await isa_body.json();
-      setImage(json);
+      const json = isa_body.ok && await isa_body.json();
+      isa_body.ok && setImage(json);
     })
   }, [description, id])
 
