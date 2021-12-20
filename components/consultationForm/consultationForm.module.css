@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--lilac);
+  max-width: 45rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.input {
+  display: inline;
+}
