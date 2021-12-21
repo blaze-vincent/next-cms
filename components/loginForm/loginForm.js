@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './loginForm.module.css'
 
-export default function LoginForm({setToken}){
+export default function LoginForm({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [attemptFailed, setAttemptFailed] = useState(false);
@@ -17,16 +17,22 @@ export default function LoginForm({setToken}){
       body,
     }).then(async response => {
       const authorization = await response.json()
-      if(authorization.token){
+      if (authorization.token) {
+        document.cookie = `auth=${authorization.token}; expires=${new Date(new Date().getTime() + 30 * 60000)}; SameSite=Strict`
         setToken(authorization.token)
       } else {
         setAttemptFailed(true);
       }
-    }) 
+    })
   }
+
+  useEffect(_ => {
+    console.log(document.cookie)
+  }, [])
+
   useEffect(_ => {
     const effect = setTimeout(_ => {
-      if(attemptFailed){setAttemptFailed(false)}
+      if (attemptFailed) { setAttemptFailed(false) }
     }, 500)
     return _ => {
       clearTimeout(effect)
@@ -40,7 +46,7 @@ export default function LoginForm({setToken}){
       <input className={styles.input} type="text" value={username} onChange={e => setUsername(e.target.value)} />
       <label>password: </label>
       <input className={styles.input} type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <input className={`${styles.input} ${styles.submit} ${attemptFailed && styles.attemptFailed}`} type="submit" value="login"/>
+      <input className={`${styles.input} ${styles.submit} ${attemptFailed && styles.attemptFailed}`} type="submit" value="login" />
     </form>
   </div>)
 }

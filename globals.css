@@ -5,7 +5,7 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 
-    --max-target-width: 1920px;
+    --max-target-width: 85rem;
     --min-target-width: 320px;
     --white: #fbfbfb;
     --purple-primary: #322f50;
