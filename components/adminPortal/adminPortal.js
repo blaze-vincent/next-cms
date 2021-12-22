@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import ConsultationRequestViewer from '../consultationRequestViewer/consultationRequestViewer'
 import ImagesEditor from '../imagesEditor/imagesEditor'
 import LoginForm from '../loginForm/loginForm'
+import PagesEditor from '../pagesEditor/pagesEditor'
 import ServicesEditor from '../servicesEditor/servicesEditor'
 import styles from './adminPortal.module.css'
 
@@ -14,7 +15,7 @@ export default function AdminPortal(){
       <h1 className={styles.h1}>{editor ? editor : 'Admin portal'}</h1>
       {editor && <button className={styles.backBtn} onClick={_ => {setEditor('')}}>{'< Back to admin portal'}</button>}
       {!editor && <div className={styles.editorsList}>
-        {['Services', 'Images', 'About', 'Consultation Requests'].map((editorType, index) => {
+        {['Services', 'Images', 'Pages', 'Consultation Requests'].map((editorType, index) => {
           return (<button 
             className={styles.editorBtn} 
             key={index}
@@ -26,8 +27,8 @@ export default function AdminPortal(){
       ? <ServicesEditor token={token}/>
       : editor === 'Images'
       ? <ImagesEditor token={token}/>
-      : editor === 'About'
-      ? <></>
+      : editor === 'Pages'
+      ? <PagesEditor token={token} />
       : editor === "Consultation Requests"
       ? <ConsultationRequestViewer token={token} />
       : ''
