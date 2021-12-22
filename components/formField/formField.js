@@ -5,10 +5,6 @@ import styles from './formField.module.css'
 export default function FormField({value, name, setter, type, placeholder, required, onError}){
 
   let input = null;
-  const [error, flagError] = useState(false);
-  useEffect(_ => {
-    onError(error)
-  }, [error])
 
   switch(type){
     case "checklist":

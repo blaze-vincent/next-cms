@@ -26,7 +26,7 @@ export default function ServicesChecklistInput({value, setter}){
         <input 
           type='checkbox' 
           name={svc.name} 
-          value={svc._id}
+          value={svc.name}
           onChange={changeHandler}  
         ></input>
       </div>)

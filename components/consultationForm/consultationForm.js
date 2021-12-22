@@ -10,10 +10,10 @@ export default function ConsultationForm(){
   const [zip, setZip] = useState(''); //text input
   const [services, setServices] = useState([]);
   const [comment, setComment] = useState('');
-  const [error, flagError] = useState(false)
 
   const inputObjs = [
     {
+      id: "name",
       name: "Name",
       value: name,
       setter: setName,
@@ -22,6 +22,7 @@ export default function ConsultationForm(){
       required: true,
     },
     {
+      id: "email",
       name: "Email address",
       value: email,
       setter: setEmail,
@@ -30,6 +31,7 @@ export default function ConsultationForm(){
       required: true,
     },
     {
+      id: "phone",
       name: "Phone number",
       value: phone,
       setter: setPhone,
@@ -38,6 +40,7 @@ export default function ConsultationForm(){
       required: true,
     },
     {
+      id: "zipcode",
       name: "Zip code",
       value: zip,
       setter: setZip,
@@ -46,6 +49,7 @@ export default function ConsultationForm(){
       required: true,
     },
     {
+      id: "services",
       name: "Services",
       value: services,
       setter: setServices,
@@ -53,6 +57,7 @@ export default function ConsultationForm(){
       required: false,
     },
     {
+      id: "comment",
       name: "Comment",
       value: comment,
       setter: setComment,
@@ -63,7 +68,16 @@ export default function ConsultationForm(){
 
   const handleSubmit = e => {
     e.preventDefault();
-    
+    const body = new FormData();
+    inputObjs.forEach(obj => {
+      body.set(obj.id, obj.value)
+    })
+    fetch('/api/consultation', {
+      method: 'POST',
+      body
+    }).then(res => {
+      console.log(res);
+    })
   }
 
   return (<form
@@ -81,7 +95,6 @@ export default function ConsultationForm(){
         type={obj.type}
         placeholder={obj.placeholder}
         required={obj.required}
-        onError={flagError}
       />)
     })
   }

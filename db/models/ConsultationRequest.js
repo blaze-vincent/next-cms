@@ -22,8 +22,7 @@ const ContactRequest = new mongoose.Schema({
     required: true
   },
   services: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Service'
+    type: String,
   }],
   createdAt: {
     type: Date,
