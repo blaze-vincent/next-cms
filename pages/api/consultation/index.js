@@ -1,8 +1,8 @@
-import dbConnect from '../../db/connect'
+import dbConnect from '../../../db/connect'
 import multer from 'multer'
 import nextConnect from 'next-connect'
-import requireAuthorization from '../../middleware/requireAuthorization'
-import ConsultationRequest from '../../db/models/ConsultationRequest'
+import requireAuthorization from '../../../middleware/requireAuthorization'
+import ConsultationRequest from '../../../db/models/ConsultationRequest'
 import nodemailer from 'nodemailer'
 
 const upload = multer();
@@ -28,7 +28,8 @@ const handler = nextConnect({
 .get(requireAuthorization(), async (req, res) => {
     try {
         //get all from db organized by latest first
-        
+        const consultationRequests = await ConsultationRequest.find().sort({createdAt: -1})
+        res.status(200).json({consultationRequests})
     } catch (err) {
         res.status(401).json({error: 'authorization failed'});
     }
