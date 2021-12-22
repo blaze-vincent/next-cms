@@ -10,6 +10,7 @@ export default function ConsultationForm(){
   const [zip, setZip] = useState(''); //text input
   const [services, setServices] = useState([]);
   const [comment, setComment] = useState('');
+  const [error, flagError] = useState(false)
 
   const inputObjs = [
     {
@@ -40,7 +41,7 @@ export default function ConsultationForm(){
       name: "Zip code",
       value: zip,
       setter: setZip,
-      type: "text", //add constraints
+      type: "zip", //add constraints
       placeholder: "12345",
       required: true,
     },
@@ -55,13 +56,14 @@ export default function ConsultationForm(){
       name: "Comment",
       value: comment,
       setter: setComment,
-      type: "text", //change to textarea
+      type: "textarea", //change to textarea
       required: true,
     }
   ]
 
   const handleSubmit = e => {
     e.preventDefault();
+    
   }
 
   return (<form
@@ -79,10 +81,14 @@ export default function ConsultationForm(){
         type={obj.type}
         placeholder={obj.placeholder}
         required={obj.required}
+        onError={flagError}
       />)
     })
   }
-
+  <button 
+      className={styles.submit}
+      type="submit"
+  >Submit request</button>
 
   </form>)
 }
