@@ -1,21 +1,28 @@
+import ServicesChecklistInput from '../servicesChecklistInput/servicesChecklistInput';
 import styles from './formField.module.css'
 
-export default function FormField({value, name, setter, type, placeholder}){
+export default function FormField({value, name, setter, type, placeholder, required}){
 
-  let specialInput = null;
+  let input = null;
   switch(type){
     case "checklist":
-      specialInput= (<>
-        {
-          //checkbox for each value
-        }
-      </>)
+      input = (<ServicesChecklistInput 
+        value={value} 
+        setter={setter}
+      />)
       break;
     case "textarea":
 
       break;
     default:
-
+      input = (<input
+        type={type}
+        name={name}
+        className={styles.input}
+        onChange={e => {setter(e.target.value)}}
+        value={value}
+        placeholder={placeholder}
+      />)
       break;
   }
 
@@ -24,14 +31,7 @@ export default function FormField({value, name, setter, type, placeholder}){
     <label
       htmlFor='name'
       className={styles.label}
-    >{name}: </label>
-    <input
-      type={type}
-      name={name}
-      className={styles.input}
-      onChange={e => {setter(e.target.value)}}
-      value={value}
-      placeholder={placeholder}
-    />
+    >{`${name}${required && ' * ' || ''}`}: </label>
+    {input}
   </div>)
 }

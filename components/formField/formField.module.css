@@ -2,8 +2,15 @@
   display: flex;
   flex-direction: row;
   font-size: 1.125rem;
-  align-items: center;
-
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.label {
+  max-width: max-content;
+  font-weight: 500;
 }
 .input {
   font-size: 1.125rem;
@@ -13,4 +20,5 @@
   margin-bottom: 0.5rem;
   background-color: var(--white);
   color: var(--purple-secondary);
+  width: 20rem;
 }

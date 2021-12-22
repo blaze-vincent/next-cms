@@ -11,8 +11,6 @@ export const config = {
   },
 }
 
-const upload = multer();
-
 const handler = nextConnect({
   onError: (err, req, res, next) => {
     console.error(err.stack);

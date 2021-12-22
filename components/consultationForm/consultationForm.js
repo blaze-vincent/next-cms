@@ -1,5 +1,5 @@
 import styles from './consultationForm.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormField from '../formField/formField';
 
 export default function ConsultationForm(){
@@ -17,52 +17,58 @@ export default function ConsultationForm(){
       value: name,
       setter: setName,
       type: "text",
-      placeholder: "John Doe"
+      placeholder: "John Doe",
+      required: true,
     },
     {
       name: "Email address",
       value: email,
       setter: setEmail,
       type: "email",
-      placeholder: "example@email.com"
+      placeholder: "example@email.com",
+      required: true,
     },
     {
       name: "Phone number",
       value: phone,
       setter: setPhone,
       type: "tel",
-      placeholder: "(000) 000-0000"
+      placeholder: "(000) 000-0000",
+      required: true,
     },
     {
       name: "Zip code",
       value: zip,
       setter: setZip,
       type: "text", //add constraints
-      placeholder: "12345"
+      placeholder: "12345",
+      required: true,
     },
     {
       name: "Services",
       value: services,
       setter: setServices,
-      type: "text" //add array of values / special setter
+      type: "checklist", //add array of values / special setter
+      required: false,
     },
     {
       name: "Comment",
       value: comment,
       setter: setComment,
-      type: "text" //change to textarea
+      type: "text", //change to textarea
+      required: true,
     }
   ]
 
   const handleSubmit = e => {
     e.preventDefault();
-
   }
 
   return (<form
     onSubmit={handleSubmit}
     className={styles.container}
   >
+  <small className={styles.small}>* indicates required field</small>
   {
     inputObjs.map((obj, index) => {
       return (<FormField 
@@ -72,6 +78,7 @@ export default function ConsultationForm(){
         name={obj.name}
         type={obj.type}
         placeholder={obj.placeholder}
+        required={obj.required}
       />)
     })
   }
