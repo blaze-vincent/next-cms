@@ -3,6 +3,7 @@ import multer from 'multer'
 import nextConnect from 'next-connect'
 import requireAuthorization from '../../middleware/requireAuthorization'
 import ConsultationRequest from '../../db/models/ConsultationRequest'
+import nodemailer from 'nodemailer'
 
 const upload = multer();
 export const config = {
@@ -43,10 +44,34 @@ const handler = nextConnect({
         comment,
         services: services.split(',')
     });
+
     res.status(200).json({consultationRequest});
+
+    try {
+        let transporter = nodemailer.createTransport({
+            host: "mail.privateemail.com",
+            port: 465,
+            secure: true,
+            auth: {
+                user: "consultationbot@precisioncoatingsiowa.com", 
+                pass: process.env.BOTPASSWORD,
+            },
+        });
     
+        let info = await transporter.sendMail({
+            from: '"CONSULTATION BOT" <consultationbot@precisioncoatingsiowa.com>',
+            to: "blaze.vincent@hotmail.com",
+            subject: "A new consultation request has been submitted",
+            text: `Check your admin dashboard to see the new consultation request submitted by ${name}`,
+            html: `<b>Check your admin dashboard to see the new consultation request submitted by ${name}</b>`,
+        });
+    
+    } catch (err) {
+        console.log(err)
+    }
+
   } catch(err){
-    res.status(401).json({error: 'upload failed'});
+    res.status(400).json({error: 'upload failed'});
   }
 })
 

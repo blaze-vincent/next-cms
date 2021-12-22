@@ -5,6 +5,21 @@ export default function LoginForm({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [attemptFailed, setAttemptFailed] = useState(false);
+  useEffect(_ => {
+    if(document.cookie){
+  
+      fetch('/api/auth', {
+        method: 'POST'
+      }).then(async res => {
+        console.log(res)
+        const json = await res.json();
+        if(json.token){
+          setToken(json.token)
+        }
+      })
+    }
+  }, [])
+
   const submit = e => {
     e.preventDefault()
 
@@ -25,10 +40,6 @@ export default function LoginForm({ setToken }) {
       }
     })
   }
-
-  useEffect(_ => {
-    console.log(document.cookie)
-  }, [])
 
   useEffect(_ => {
     const effect = setTimeout(_ => {

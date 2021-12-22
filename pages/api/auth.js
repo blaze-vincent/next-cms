@@ -27,22 +27,29 @@ const handler = nextConnect({
 })
 .post(upload.none(), async (req, res) => {
   try {
-    const {username, password} = req.body;
+    if(req.headers.cookie){
+      const {cookie} = req.headers;
+      const token = cookie.split(' ')[1];
+      jwt.verify(token, process.env.SECRET)
+      res.status(200).json({token: cookie.split('=')[1]})
+    } else if(req.body.username && req.body.password){
+      const {username, password} = req.body;
 
-    const {passwordHash} = await Account.findOne({username});
-
-    await bcrypt.compare(password, passwordHash).then(result => {
-      if(result){
-        const token = jwt.sign({
-          username
-        }, process.env.SECRET, {
-          expiresIn: "30m"
-        })
-        res.status(200).json({token: `Bearer ${token}`})
-      } else {
-        throw new Error('authorization failed')
-      }
-    })
+      const {passwordHash} = await Account.findOne({username});
+  
+      await bcrypt.compare(password, passwordHash).then(result => {
+        if(result){
+          const token = jwt.sign({
+            username
+          }, process.env.SECRET, {
+            expiresIn: "30m"
+          })
+          res.status(200).json({token: `Bearer ${token}`})
+        } else {
+          throw new Error('authorization failed')
+        }
+      })
+    } 
   } catch(err){
     res.status(401).json({error: 'authorization failed'});
   }
