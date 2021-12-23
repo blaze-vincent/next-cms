@@ -1,7 +1,7 @@
 import PillButton from '../pillButton/pillButton';
 import styles from './aboutPreview.module.css';
 
-export default function AboutPreview(){
+export default function AboutPreview({paragraph}){
   return (<div className={styles.container}>
     <div className={styles.background} />
     <div className={styles.overlay}>
@@ -11,7 +11,7 @@ export default function AboutPreview(){
       </div>
       <div className={styles.subContainer}>
         <p className={styles.p}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae tellus eu lorem vulputate auctor eget sit amet lacus. Donec imperdiet enim et turpis finibus elementum. Nullam id odio in nunc porttitor egestas sit amet eget erat.
+          {paragraph}
         </p>
         <PillButton destination="/about" size="small">Read more about us</PillButton>
       </div>

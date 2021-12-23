@@ -28,8 +28,14 @@ const handler = nextConnect({
 })
 .get(async (req, res) => {
   try {
-    //add limits from req.query
-    const services = await Service.find({}).exec()
+    let services;
+    if(req.query.primary){
+      //only query constraint is on home page where i want primary services
+      services = await Service.find({secondaryStatus: false}).exec()
+    } else {
+      services = await Service.find({}).exec()
+    }
+    
     res.status(200).json({success: true, services})
   } catch(err) {
     res.status(400).json({success: false});
