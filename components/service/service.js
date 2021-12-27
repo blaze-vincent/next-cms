@@ -7,9 +7,19 @@ export default function Service({name, description, id, minimized}){
   const [image, setImage] = useState(null);
 
   useEffect(_ => {
-    description && fetch(`/api/image/${id}`).then(async isa_body => {
-      const json = isa_body.ok && await isa_body.json();
-      isa_body.ok && setImage(json);
+    description && fetch('/api/imageserviceassociation?' + new URLSearchParams({
+      service: id,
+      display: true,
+    })).then(async res => {
+      const json = await res.json();
+      if(json.isassociation){
+        fetch(`/api/image/${json.isassociation._image}`).then(async res2 => {
+          const json2 = await res2.json()
+          if(json2.url){
+            setImage(json2)
+          }
+        })
+      }
     })
   }, [description, id])
 

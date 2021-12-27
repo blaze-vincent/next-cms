@@ -89,7 +89,7 @@ export default function GalleryImage({dbImage, token, services, refresh}){
             <div className={styles.tag}>{dbService.name}</div>
             {token && dbService.displayed 
             && <p className={styles.displayText}>displayed</p>
-            ||<button 
+            || token && <button 
               className={styles.displayButton}
               onClick={e => {
                 e.stopPropagation();
