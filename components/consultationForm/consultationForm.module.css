@@ -22,3 +22,13 @@
   font-size: 1.5rem;
   padding: 0.5rem;
 }
+.p{
+  display: block;
+  background-color: var(--lilac);
+  padding: 2rem;
+  border-radius: 1rem;
+  color: var(--purple-primary);
+  margin-top: 5rem;
+  max-width: max-content;
+  font-size: 20px;
+}

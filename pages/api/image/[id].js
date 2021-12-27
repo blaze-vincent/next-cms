@@ -25,11 +25,17 @@ const handler = nextConnect({
   next()
 })
 .get( async (req, res) => {
-  const {serviceId} = req.query;
-  const isa = await ImageServiceAssociation.findOne({_service: serviceId});
-  if(isa){
-    const image = await Image.findOne({_image: isa._image});
+  //database will not grow to a crazy degree so this assumes no overlap in image and service ids
+  const {id} = req.query;
+  const image = await Image.findOne({_id: id});
+  if(image){
     res.status(200).json(image);
+    return;
+  }
+  const isa = await ImageServiceAssociation.findOne({_service: id});
+  if(isa){
+    const img = await Image.findOne({_image: isa._image});
+    res.status(200).json({image: img});
     return;
   }
   res.status(404).end();

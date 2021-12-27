@@ -52,12 +52,6 @@
   resize: none;
 }
 
-@media (hover: hover){
-  .container button:hover {
-    background-color: var(--purple-primary);
-    color: var(--white);
-  }
-}
 @media (max-width: 500px){
   .container {
     display: flex;

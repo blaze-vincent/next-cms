@@ -24,27 +24,21 @@
   padding: 0.5rem;
   gap: 1rem;
 }
-.tagsContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  overflow-x: auto;
-  align-items: center;
-  text-overflow: ellipsis;
-}
-.tagsContainer p {
-  min-width: max-content;
-}
 .tag {
-  min-width: max-content;
-  max-width: max-content;
+  width: max-content;
+  color: var(--purple-secondary);
+  padding: 0rem 0.25rem;
+  border-radius: 1000px;
   font-weight: 600;
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  white-space: nowrap;
 }
 .tagsLabel {
   font-weight: 500;
   max-width: max-content;
 }
-.addTag, .editDescription, .removeTag, .saveDescription, .discardDescription, .saveService, .cancelService, .deleteButton{
+.addTag, .editDescription, .removeTag, .saveDescription, .discardDescription, .saveService, .cancelService, .deleteButton, .displayButton{
   display: inline;
   min-width: max-content;
   max-width: max-content;
@@ -55,9 +49,16 @@
   background-color: var(--white);
   padding: 0.25rem;
 }
+.displayButton {
+  color: rgb(86, 141, 74);
+  border-color: rgb(86, 141, 74);
+}
 .removeTag, .discardDescription, .cancelService, .deleteButton {
   border-color: var(--pink);
   color: var(--pink)
+}
+.removeTag {
+  margin-right: 1rem;
 }
 .descriptionEditButtons{
   display: flex;
@@ -88,8 +89,34 @@
   min-width: max-content;
 }
 .tagInfoContainer {
-  display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.25rem;
+  width: max-content;
+  display: inline-flex;
+  padding-right: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  max-height: 10rem;
+  overflow-y: scroll;
+}
+.displayText {
+  color: rgb(86, 141, 74);
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  .removeTag:hover, .discardDescription:hover, .cancelService:hover, .deleteButton:hover {
+    background-color: var(--pink);
+  }
+  .addTag:hover, .editDescription:hover, .saveDescription:hover, .saveService:hover {
+    background-color: var(--purple-primary);
+  }
+  .displayButton:hover {
+    background-color: rgb(86, 141, 74);
+  }
 }

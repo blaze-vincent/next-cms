@@ -23,7 +23,7 @@
 }
 @media (hover: hover){
     .container:hover{
-        background-color: var(--purple-secondary);
+        background-color: var(--purple-primary);
         color: var(--white);
     }
 }

@@ -11,6 +11,8 @@ export default function ConsultationForm(){
   const [services, setServices] = useState([]);
   const [comment, setComment] = useState('');
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const inputObjs = [
     {
       id: "name",
@@ -53,7 +55,7 @@ export default function ConsultationForm(){
       name: "Services",
       value: services,
       setter: setServices,
-      type: "checklist", //add array of values / special setter
+      type: "checklist",
       required: false,
     },
     {
@@ -61,7 +63,7 @@ export default function ConsultationForm(){
       name: "Comment",
       value: comment,
       setter: setComment,
-      type: "textarea", //change to textarea
+      type: "textarea",
       required: true,
     }
   ]
@@ -77,10 +79,13 @@ export default function ConsultationForm(){
       body
     }).then(res => {
       console.log(res);
+      if(res.ok){
+        setFormSubmitted(true);
+      }
     })
   }
 
-  return (<form
+  return !formSubmitted && (<form
     onSubmit={handleSubmit}
     className={styles.container}
   >
@@ -104,4 +109,7 @@ export default function ConsultationForm(){
   >Submit request</button>
 
   </form>)
+
+
+  || (<p className={styles.p}>Thank you for your request!</p>)
 }

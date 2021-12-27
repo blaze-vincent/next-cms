@@ -83,18 +83,45 @@ export default function GalleryImage({dbImage, token, services, refresh}){
         </>
         }
       </div>
-      <div className={styles.tagsContainer}>
-        {dbImage.services && <p className={styles.tagsLabel}>Services showcased: </p>}
+      <div className={`${styles.tagsContainer} ${token && styles.column}`}>
         {dbImage.services && dbImage.services.map((dbService, index) => {
           return (<div key={index} className={styles.tagInfoContainer}>
-            <div className={styles.tag}>{dbService}</div>
+            <div className={styles.tag}>{dbService.name}</div>
+            {token && dbService.displayed 
+            && <p className={styles.displayText}>displayed</p>
+            ||<button 
+              className={styles.displayButton}
+              onClick={e => {
+                e.stopPropagation();
+
+                const body = new FormData();
+                body.append("_image", dbImage._id)
+                body.append("serviceName", dbService.name)
+                
+                fetch('/api/imageserviceassociation', {
+                  method: "PATCH",
+                  body,
+                  headers: new Headers({
+                    'authorization': token
+                  }),
+                }).then(async res => {
+                  const json = await res.json();
+                  if(json.success){
+                    //could add indicator here
+                  }
+                })
+                refresh()
+              }}
+            >
+              set display
+            </button>}
             {token && <button 
               className={styles.removeTag}
               onClick={e => {
                 e.stopPropagation();
 
                 const serviceId = services.filter(svc => {
-                  return svc.name === dbService;
+                  return svc.name === dbService.name;
                 }).map(svcObj => {
                   return svcObj._id
                 })[0]

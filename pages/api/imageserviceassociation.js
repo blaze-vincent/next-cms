@@ -2,6 +2,7 @@ import multer from "multer";
 import nextConnect from "next-connect";
 import dbConnect from "../../db/connect";
 import ImageServiceAssociation from '../../db/models/ImageServiceAssociation'
+import Service from '../../db/models/Service'
 import requireAuthorization from "../../middleware/requireAuthorization";
 
 const upload = multer();
@@ -29,17 +30,15 @@ const handler = nextConnect({
   try {
     let isassociation;
 
-    const {service = 0, limit = 0, sort = 0} = req.query
+    const {service = null, display = false} = req.query
     if(service){
-      if(limit){
-        if(sort){
-          isassociation = await ImageServiceAssociation.find({_service: service}).sort({ rank: -1 }).limit(limit).exec()
-        } else
-        isassociation = await ImageServiceAssociation.find({_service: service}).limit(limit).exec()
-      } else
-      isassociation = await ImageServiceAssociation.find({_service: service}).exec()
+      if(display){
+        isassociation = await ImageServiceAssociation.findOne({_service: service, display: true})
+      } else {
+        isassociation = await ImageServiceAssociation.find({_service: service})
+      }
     } else {
-      isassociation = await ImageServiceAssociation.find({}).exec()
+      isassociation = await ImageServiceAssociation.find({})
     }
     res.status(200).json({success: true, isassociation})
   } catch(err) {
@@ -48,8 +47,10 @@ const handler = nextConnect({
 })
 .patch(requireAuthorization(), upload.none(), async (req, res) => {
   try {
-    const {isa, service} = req.body;
-    const isassociation = await ImageServiceAssociation.findOneAndUpdate({_id: isa}, {_service: service})
+    const {_image, serviceName} = req.body;
+    const service = await Service.findOne({name: serviceName});
+    await ImageServiceAssociation.updateMany({_service: service._id}, {display: false});
+    const isassociation = await ImageServiceAssociation.findOneAndUpdate({_image, _service: service._id}, {display: true}, {new: true})
     res.status(200).json({success: true, isassociation})
   } catch (err) {
     res.status(400).json({success: false});

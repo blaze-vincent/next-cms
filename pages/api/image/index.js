@@ -52,7 +52,7 @@ const handler = nextConnect({
       if(associations.length){
         const services = await Promise.all(associations.map(async assoc => {
           const svc = await Service.findOne({_id: assoc._service})
-          return svc.name
+          return {name: svc.name, displayed: assoc.display}
         }))
         return Object.assign({}, dbImg._doc, {services})
       }

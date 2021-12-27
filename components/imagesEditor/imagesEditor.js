@@ -38,15 +38,22 @@ export default function ImagesEditor({token, inHome}){
   const [services, setServices] = useState([])
   const servicesObj = useRef(null)
   useEffect(_ => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     if(!services.current){
       fetch('/api/service', {
-        method: 'GET'
+        method: 'GET',
+        signal
       }).then(async response => {
         response.json().then(json => {
           servicesObj.current = json;
           setServices(json.services)
         })
       })
+    }
+    return _ => {
+      controller.abort()
     }
   }, [])
 
@@ -76,7 +83,7 @@ export default function ImagesEditor({token, inHome}){
     <label>select tags</label>
     {services.map((svc, index) => {
       return (<div key={index} className={styles.service}>
-        <label for={svc._id}>{svc.name}</label>
+        <label htmlFor={svc._id}>{svc.name}</label>
         <input 
           type="checkbox" 
           name={svc._id}
@@ -102,7 +109,6 @@ export default function ImagesEditor({token, inHome}){
           body.append('image', imageToAdd);
           body.append('description', imageDescription);
           body.append('services', getSelectedTags())
-          console.log(getSelectedTags())
 
           fetch('/api/image', {
             method: 'POST',

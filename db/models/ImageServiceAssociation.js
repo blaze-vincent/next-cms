@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 const ImageServiceAssociationSchema = new mongoose.Schema({
-  strength: {
-    type: Number,
-    default: 99999,
+  display: {
+    type: Boolean,
+    default: false,
     required: true
   },
   _image: {
