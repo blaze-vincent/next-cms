@@ -4,6 +4,7 @@ import ImagesEditor from '../imagesEditor/imagesEditor'
 import LoginForm from '../loginForm/loginForm'
 import PagesEditor from '../pagesEditor/pagesEditor'
 import ServicesEditor from '../servicesEditor/servicesEditor'
+import AccountsEditor from '../accountsEditor/accountsEditor'
 import styles from './adminPortal.module.css'
 
 export default function AdminPortal(){
@@ -15,7 +16,7 @@ export default function AdminPortal(){
       <h1 className={styles.h1}>{editor ? editor : 'Admin portal'}</h1>
       {editor && <button className={styles.backBtn} onClick={_ => {setEditor('')}}>{'< Back to admin portal'}</button>}
       {!editor && <div className={styles.editorsList}>
-        {['Services', 'Images', 'Pages', 'Consultation Requests'].map((editorType, index) => {
+        {['Services', 'Images', 'Pages', 'Consultation Requests', 'Accounts'].map((editorType, index) => {
           return (<button 
             className={styles.editorBtn} 
             key={index}
@@ -31,7 +32,9 @@ export default function AdminPortal(){
       ? <PagesEditor token={token} />
       : editor === "Consultation Requests"
       ? <ConsultationRequestViewer token={token} />
-      : ''
+      : editor === 'Accounts'
+      ? <AccountsEditor token={token} />
+      : <></>
       }
     </> : <LoginForm setToken={setToken} />}
   </div>)

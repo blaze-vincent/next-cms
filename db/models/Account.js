@@ -5,9 +5,12 @@ const AccountSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  isSuperAdmin: {
+    type: Boolean,
+    default: false
+  },
   passwordHash: {
-    type: String,
-    required: true
+    type: String
   },
   createdAt: {
     type: Date,

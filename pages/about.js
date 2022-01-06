@@ -9,10 +9,7 @@ export async function getStaticProps(){
     await dbConnect()
     const dbDescription = await JSON.parse(JSON.stringify(await AboutInfo.findOne()))
     const backgroundImage = JSON.parse(JSON.stringify(await Image.findOne({aboutImage: true})))
-    //set background image of about page
-    //add superadmin to josh
-    //allow superadmin to create blank users
-    //upon first signin of blank user, request password
+
     return {
       props: {dbDescription, backgroundImage}
     }

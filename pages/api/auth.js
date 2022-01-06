@@ -35,12 +35,20 @@ const handler = nextConnect({
     } else if(req.body.username && req.body.password){
       const {username, password} = req.body;
 
-      const {passwordHash} = await Account.findOne({username});
+      const {_id, passwordHash = null, isSuperAdmin = false} = await Account.findOne({username});
   
+      //only works on first login
+      //resetting password requires that a superadmin delete and recreate account 
+      if(!passwordHash){
+        passwordHash = await bcrypt.hash(password, 12);
+        await Account.updateOne({_id}, {passwordHash})
+      }
+
       await bcrypt.compare(password, passwordHash).then(result => {
         if(result){
           const token = jwt.sign({
-            username
+            username,
+            isSuperAdmin
           }, process.env.SECRET, {
             expiresIn: "30m"
           })

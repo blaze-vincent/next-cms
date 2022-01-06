@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: max-content;
+  max-width: 100%;
+  align-items: center;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  gap: 1rem;
+  align-items: center;
+}
+.delete {
+  background-color: var(--pink);
+  border-color: var(--pink);
+  color: var(--white);
+}
+@media (hover: hover){
+  .delete:hover{
+    background-color: var(--white);
+    color: var(--pink);
+  }
+}
+.p {
+  max-width: 100%;
+  width: max-content;
+}
+.input {
+  font-size: 1rem;
+  padding: 0.25rem;
+  width: 8rem;
+}
