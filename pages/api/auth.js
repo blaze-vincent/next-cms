@@ -39,12 +39,13 @@ const handler = nextConnect({
   
       //only works on first login
       //resetting password requires that a superadmin delete and recreate account 
+      let passHash; //passwordHash extracted from Account.findOne is read-only
       if(!passwordHash){
-        passwordHash = await bcrypt.hash(password, 12);
-        await Account.updateOne({_id}, {passwordHash})
+        passHash = await bcrypt.hash(password, 12);
+        await Account.updateOne({_id}, {passwordHash: passHash})
       }
 
-      await bcrypt.compare(password, passwordHash).then(result => {
+      await bcrypt.compare(password, passwordHash || passHash).then(result => {
         if(result){
           const token = jwt.sign({
             username,

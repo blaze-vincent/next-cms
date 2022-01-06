@@ -60,8 +60,6 @@ const handler = nextConnect({
 })
 .delete(requireAuthorization({superadminRequired: true}), upload.none(), async (req, res) => {
   try {
-    console.log(req.body)
-
     const {id} = req.body;
     //disallow deletion of super admin accounts
     const account = await Account.findOneAndDelete({_id: id, isSuperAdmin: false})
