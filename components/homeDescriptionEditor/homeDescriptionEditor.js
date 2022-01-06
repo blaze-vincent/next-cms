@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import styles from './aboutEditor.module.css'
+import styles from './homeDescriptionEditor.module.css'
 
-
-//copied and pasted this from homeDescriptionEditor lol
-//really shouldve been a component but it's too late in the game for that
-export default function AboutEditor({token}){
+export default function HomeDescriptionEditor({token}){
 
   const [description, setDescription] = useState('');
   const previousDescription = useRef('');
@@ -26,11 +23,11 @@ export default function AboutEditor({token}){
   }, [editSaved])
 
   useEffect(_ => {
-    fetch('/api/about').then(async res => {
+    fetch('/api/homedescription').then(async res => {
       const json = await res.json();
-      if(json.dbAbout){
-        setDescription(json.dbAbout.paragraph);
-        previousDescription.current = json.dbAbout.paragraph;
+      if(json.dbDescription){
+        setDescription(json.dbDescription.paragraph);
+        previousDescription.current = json.dbDescription.paragraph;
         if(textareaEl.current){
           textareaEl.current.style.height = `${textareaEl.current.scrollHeight + 5}px`
         }
@@ -39,11 +36,11 @@ export default function AboutEditor({token}){
   }, [])
 
   return (<div className={styles.container}>
-    <h2 className={styles.h2}>About</h2>
+    <h2 className={styles.h2}>Home</h2>
     <label htmlFor="paragraph">{
       editSaved 
       && "Changes saved..."
-      || "Type a longer description for the About page here."
+      || "Type a description for the Home page here."
     }</label>
     <textarea 
       name="paragraph"
@@ -61,7 +58,7 @@ export default function AboutEditor({token}){
         onClick={e => {
           const body = new FormData()
           body.append('paragraph', description);
-          fetch('/api/about', {
+          fetch('/api/homedescription', {
             method: 'POST',
             headers: new Headers({
               "authorization": token
@@ -69,7 +66,7 @@ export default function AboutEditor({token}){
             body
           }).then(async res => {
             const json = await res.json();
-            if(json.dbAbout){
+            if(json.dbDescription){
               setEditSaved(true)
             }
           })

@@ -37,6 +37,7 @@ export default function GalleryImage({dbImage, token, services, refresh}){
       <Image src={url} alt={description || `image uploaded on ${date}`} layout='responsive' objectFit='cover' width={100} height={100}/>
     </div>
     {expanded && <div className={styles.overlay} onClick={expandImage}>
+      <div></div>
       <div className={styles.description}>
         {descriptionEditMode
         ?<>
@@ -83,6 +84,56 @@ export default function GalleryImage({dbImage, token, services, refresh}){
         </>
         }
       </div>
+      {token && <div>
+        {!dbImage.homeImage && <button
+        className={styles.homeImageButton}
+        onClick={e => {
+          e.stopPropagation();
+          fetch(`/api/image/${dbImage._id}?route=home`, {
+            method: 'PATCH',
+            headers: new Headers({
+              'authorization': token
+            }),
+          }).then(async res => {
+            const json = await res.json();
+            if(json.image){
+              console.log(dbImage)
+              refresh()
+            }
+          })
+        }}
+        >
+          set home page image
+        </button>
+        || <i>
+          image is displayed on home page 
+        </i>
+        }
+        {!dbImage.aboutImage && <button
+        className={styles.homeImageButton}
+        onClick={e => {
+          e.stopPropagation();
+          fetch(`/api/image/${dbImage._id}?route=about`, {
+            method: 'PATCH',
+            headers: new Headers({
+              'authorization': token
+            }),
+          }).then(async res => {
+            const json = await res.json();
+            if(json.image){
+              console.log(dbImage)
+              refresh()
+            }
+          })
+        }}
+        >
+          set about page image
+        </button>
+        || <i>
+          image is displayed on the about page
+        </i>
+        }
+      </div>}
       <div className={`${styles.tagsContainer} ${token && styles.column}`}>
         {dbImage.services && dbImage.services.map((dbService, index) => {
           return (<div key={index} className={styles.tagInfoContainer}>
@@ -242,11 +293,6 @@ export default function GalleryImage({dbImage, token, services, refresh}){
   </div>)
 }
 
-//component remains when object has been successfully deleted
-//sideways device support
 //about page/admin editor
-//service image representation selector
-//sort gallery images by newest first
-//consultation form/db object/email
+//primary front page image selector
 
-//add/remove images

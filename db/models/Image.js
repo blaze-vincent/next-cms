@@ -12,6 +12,14 @@ const ImageSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  homeImage: {
+    type: Boolean,
+    default: false
+  },
+  aboutImage: {
+    type: Boolean,
+    default: false
   }
 })
 

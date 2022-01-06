@@ -17,3 +17,44 @@
 .h2 {
   font-size: 1.8rem;
 }
+.contentContainer {
+  z-index: 1;
+  padding: 1rem;
+  border: 2px solid var(--purple-primary);
+  border-radius: 0.5rem;
+}
+.backgroundImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: max-content;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow-y: hidden;
+  padding: 1rem;
+}
+.backgroundImage:after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(to bottom, #fff0, black);
+}
+.p {
+  width: max-content;
+  max-width: 100%;
+}
+.contentContainer {
+  max-width: 40rem;
+  width: 100%;
+  background-color: var(--white);
+}
+.noPadding {
+  padding: 0;
+}

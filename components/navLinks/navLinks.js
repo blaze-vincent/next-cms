@@ -37,11 +37,19 @@ export default function NavLinks({noConsult, inDynamicHeader, hamburgerMenuObj =
     }
     useEffect(_ => {
         updateRoute(router.pathname)
-    }, [router.asPath])
+    }, [router.asPath, router.pathname])
 
     return (<div className={`${styles.container} ${inDynamicHeader && styles.inDynamicHeader} ${hamburgerMenuObj.inHamburgerMenu && styles.inHamburgerMenu}`}>
         {!noConsult && 
-            <PillButton destination='/consult' size={hamburgerMenuObj.inHamburgerMenu && 'hamburger'}>
+            <PillButton 
+                destination='/consult' 
+                size={hamburgerMenuObj.inHamburgerMenu && 'hamburger'}
+                clickHandler={e => {
+
+                    hamburgerMenuObj.inHamburgerMenu
+                    && hamburgerMenuObj.terminateHamburgerWithDestination('/consult')
+                }}    
+            >
                 Schedule Consultation
             </PillButton>
         }
@@ -51,11 +59,8 @@ export default function NavLinks({noConsult, inDynamicHeader, hamburgerMenuObj =
                     <a 
                         className={`${styles.link} ${(linkObj.selected && styles.selected) || styles.notSelected}`}
                         onClick={e => {
-                            e.preventDefault();
-                            updateRoute(linkObj.url);
                             hamburgerMenuObj.inHamburgerMenu
-                            ? hamburgerMenuObj.terminateHamburgerWithDestination(linkObj.url)
-                            : router.push(linkObj.url);
+                            && hamburgerMenuObj.terminateHamburgerWithDestination(linkObj.url)
                         }}
                     >{linkObj.text}</a>
                 </Link>)

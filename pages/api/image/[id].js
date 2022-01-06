@@ -1,8 +1,7 @@
 import dbConnect from '../../../db/connect'
 import Image from '../../../db/models/Image'
-import ImageServiceAssociation from '../../../db/models/ImageServiceAssociation'
-import multer from 'multer'
 import nextConnect from 'next-connect'
+import requireAuthorization from '../../../middleware/requireAuthorization'
 
 
 export const config = {
@@ -33,6 +32,35 @@ const handler = nextConnect({
   } else {
     res.status(404).end();
     return;
+  }
+})
+.patch(requireAuthorization(), async (req, res) => {
+  try {
+    //currently only for updating homeImage status
+    const {id, route} = req.query //home or about
+    let image = null;
+    switch(route){
+      case 'home':
+        await Image.updateMany({}, {homeImage: false})
+        image = await Image.findOneAndUpdate({_id: id}, {homeImage: true})
+        break;
+
+      case 'about':
+        await Image.updateMany({}, {aboutImage: false})
+        image = await Image.findOneAndUpdate({_id: id}, {aboutImage: true})
+        break;
+
+      default: 
+
+        res.status(400).json({
+          error: "query must include route field with value of 'home' or 'about'"
+        })
+        return;
+    }
+
+    res.status(200).json({image})
+  } catch (err) {
+    res.status(400).json({error: 'patch failed'});
   }
 })
 
