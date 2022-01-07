@@ -61,7 +61,7 @@ const handler = nextConnect({
     
         let info = await transporter.sendMail({
             from: '"CONSULTATION BOT" <consultationbot@precisioncoatingsiowa.com>',
-            to: "blaze.vincent@hotmail.com",
+            to: "josh@precisioncoatingsiowa.com",
             subject: "A new consultation request has been submitted",
             text: `Check your admin dashboard to see the new consultation request submitted by ${name}`,
             html: `<b>Check your admin dashboard to see the new consultation request submitted by ${name}</b>`,

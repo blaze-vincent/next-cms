@@ -62,7 +62,7 @@ export default function ServicesPreview({services}){
       <div className={styles.info}>
         <div className={styles.infoInnerContainer}>
           <p className={styles.description}>{
-            selectedService.description
+            selectedService?.description || 'default'
           }</p>
           <PillButton size='small' destination={'/services'}>View all our services</PillButton>
         </div>

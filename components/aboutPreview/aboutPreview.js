@@ -2,7 +2,7 @@ import PillButton from '../pillButton/pillButton';
 import styles from './aboutPreview.module.css';
 import { useEffect, useRef } from 'react';
 
-export default function AboutPreview({paragraph, backgroundImage}){
+export default function AboutPreview({paragraph, backgroundImage = {url: '/house.jpg'}}){
 
   const backgroundEl = useRef(null);
 

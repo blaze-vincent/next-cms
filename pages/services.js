@@ -1,18 +1,20 @@
 import Service from '../components/service/service';
 import styles from './page.module.css'
+import dbService from '../db/models/Service';
+import dbConnect from '../db/connect';
 
 export async function getStaticProps(){
-  const services = await fetch('http://localhost:3000/api/service');
-  const data = await services.json()
+  await dbConnect();
+  const data = JSON.parse(JSON.stringify( await dbService.find({})))
   return {
-    props: data
+    props: {services: data}
   }
 }
 
-export default function Services(props){
+export default function Services({services}){
 
-  const describedServices = props.services.filter(item => item.description);
-  const undescribedServices = props.services.filter(item => !item.description);
+  const describedServices = services.filter(item => item.description);
+  const undescribedServices = services.filter(item => !item.description);
 
   return (<div className={styles.container}>
     <br></br>
