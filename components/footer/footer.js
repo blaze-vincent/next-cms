@@ -15,8 +15,8 @@ export default function Footer({deviceWidth}){
                         <LinkExternal type='location' href='https://goo.gl/maps/bvKDL3FsKt4VKyBT9'>
                             16912 145th St, West Burlington, IA 52655
                         </LinkExternal>
-                        <LinkExternal type='email' href='mailto:info@precisioncoatingsiowa.com'>
-                            info@<wbr />precisioncoatingsiowa.com
+                        <LinkExternal type='email' href='mailto:josh@precisioncoatingsiowa.com'>
+                            josh@<wbr />precisioncoatingsiowa.com
                         </LinkExternal>
                         <LinkExternal type='phone' href='tel:3193924639'>
                             +1 (319) 392-4639
@@ -29,7 +29,7 @@ export default function Footer({deviceWidth}){
                         <p>Copyright © 2021 Precision Coatings. </p>
                         <p>All rights reserved.</p>
                     </div>
-                    <p>Website created by <b>Blaze Vincent</b></p>
+                    <p>Website created by <b><a href="mailto:blaze.vincent@hotmail.com">Blaze Vincent</a></b></p>
                 </div>
             </div>
         </WidthContainer>
