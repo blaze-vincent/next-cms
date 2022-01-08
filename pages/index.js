@@ -8,7 +8,7 @@ import dbConnect from "../db/connect"
 import Service from '../db/models/Service'
 import AboutInfo from '../db/models/AboutInfo'
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
   await dbConnect();
 
   const services = JSON.parse(JSON.stringify(await Service.find()))

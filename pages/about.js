@@ -4,7 +4,7 @@ import AboutInfo from '../db/models/AboutInfo'
 import Image from '../db/models/Image'
 import styles from './page.module.css'
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
 
     await dbConnect()
     const dbDescription = await JSON.parse(JSON.stringify(await AboutInfo.findOne()))

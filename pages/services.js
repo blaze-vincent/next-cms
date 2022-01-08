@@ -3,7 +3,7 @@ import styles from './page.module.css'
 import dbService from '../db/models/Service';
 import dbConnect from '../db/connect';
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
   await dbConnect();
   const data = JSON.parse(JSON.stringify( await dbService.find({})))
   return {
