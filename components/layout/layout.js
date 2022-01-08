@@ -30,7 +30,8 @@ export default function Layout(props) {
     <div className={styles.container}>
       <Head>
         <title>Precision Coatings</title>
-        <meta name="description" content="" />
+        <meta name="description" content="Southeast Iowa-based painting contractors specializing in epoxy floors and commercial painting." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

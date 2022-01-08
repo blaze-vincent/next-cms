@@ -27,9 +27,7 @@ export default function About(props){
     useEffect(_ => {
         if(props.backgroundImage){
             if(backgroundEl.current){
-                console.log('this is happening')
                 backgroundEl.current.style.backgroundImage = `url('${props.backgroundImage.url}')`;
-                console.log(backgroundEl.current.style.background)
             }
         }
     }, [])
