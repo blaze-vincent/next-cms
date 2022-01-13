@@ -11,7 +11,7 @@ import AboutInfo from '../db/models/AboutInfo'
 export async function getServerSideProps(){
   await dbConnect();
 
-  const services = JSON.parse(JSON.stringify(await Service.find()))
+  const services = JSON.parse(JSON.stringify(await Service.find({secondaryStatus: false}).limit(3)))
   const about = JSON.parse(JSON.stringify(await AboutInfo.findOne()))  
   const backgroundImage = JSON.parse(JSON.stringify(await Image.findOne({homeImage: true})))
 
